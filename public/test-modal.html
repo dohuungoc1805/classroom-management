@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Edit Room Modal</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Test Edit Room Modal</h1>
+
+    <button class="btn" onclick="editRoom(1)" data-room-id="1" data-room-name="Phòng 101" data-room-capacity="30"
+        data-room-location="Tầng 1" data-room-equipment="Projector, Board">Test Edit Room</button>
+
+    <!-- Edit Room Modal -->
+    <div id="editRoomModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editRoomModal')">&times;</span>
+            <h3>Sửa thông tin phòng học</h3>
+            <form id="editRoomForm" method="POST">
+                <div class="form-group">
+                    <label for="edit_room_name">Tên phòng:</label>
+                    <input type="text" id="edit_room_name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_room_capacity">Sức chứa:</label>
+                    <input type="number" id="edit_room_capacity" name="capacity" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_room_location">Vị trí:</label>
+                    <input type="text" id="edit_room_location" name="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_room_equipment">Thiết bị:</label>
+                    <textarea id="edit_room_equipment" name="equipment" rows="3"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn" onclick="closeModal('editRoomModal')">Hủy</button>
+                    <button type="submit" class="btn">Cập nhật</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function editRoom(roomId) {
+            // Get data from the button that was clicked
+            const button = event.target;
+            const roomName = button.getAttribute('data-room-name');
+            const roomCapacity = button.getAttribute('data-room-capacity');
+            const roomLocation = button.getAttribute('data-room-location');
+            const roomEquipment = button.getAttribute('data-room-equipment');
+
+            console.log('Edit room data:', {
+                roomId,
+                roomName,
+                roomCapacity,
+                roomLocation,
+                roomEquipment
+            });
+
+            // Fill form fields
+            const nameField = document.getElementById('edit_room_name');
+            const capacityField = document.getElementById('edit_room_capacity');
+            const locationField = document.getElementById('edit_room_location');
+            const equipmentField = document.getElementById('edit_room_equipment');
+
+            if (nameField) nameField.value = roomName || '';
+            if (capacityField) capacityField.value = roomCapacity || '';
+            if (locationField) locationField.value = roomLocation || '';
+            if (equipmentField) equipmentField.value = roomEquipment || '';
+
+            // Set form action
+            const form = document.getElementById('editRoomForm');
+            if (form) {
+                form.action = `/rooms/${roomId}`;
+            }
+
+            showModal('editRoomModal');
+        }
+    </script>
+</body>
+
+</html>
