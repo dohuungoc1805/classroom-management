@@ -55,8 +55,9 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 
 ## 🔍 Code minh họa phần chính của project
 
-store() – Tạo phòng 
+### 🏗️ store() – Tạo phòng
 
+```php
 public function store(Request $request)
 {
     $request->validate([
@@ -70,10 +71,7 @@ public function store(Request $request)
     return redirect()->route('dashboard')->with('success', 'Room created successfully!');
 }
 
-
-
-
-## update() – Cập nhật thông tin phòng
+🔄 update() – Cập nhật thông tin phòng
 
 public function update(Request $request, Room $room)
 {
@@ -88,8 +86,7 @@ public function update(Request $request, Room $room)
     return redirect()->route('dashboard')->with('success', 'Cập nhật phòng học thành công!');
 }
 
-
-## Hàm destroy() – Xóa phòng học
+❌ destroy() – Xóa phòng học
 
 public function destroy(Room $room)
 {
@@ -100,8 +97,7 @@ public function destroy(Room $room)
     return redirect()->route('dashboard')->with('success', 'Xóa phòng học thành công!');
 }
 
-
-## Room.php – Model đại diện cho bảng phòng học
+🧱 Room.php – Model đại diện cho bảng phòng học
 
 class Room extends Model
 {
@@ -134,8 +130,7 @@ class Room extends Model
     }
 }
 
-## editRoom.blade.php – Giao diện cập nhật thông tin phòng
-
+🖊️ editRoom.blade.php – Giao diện cập nhật thông tin phòng
 
 <div id="editRoomModal" class="modal">
     <div class="modal-content">
@@ -162,5 +157,3 @@ class Room extends Model
         </form>
     </div>
 </div>
-
-
