@@ -98,7 +98,7 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 
 ```php
 
-store() – Create a new room
+store() – Tạo phòng 
 
 public function store(Request $request)
 {
