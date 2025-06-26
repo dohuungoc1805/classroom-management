@@ -92,11 +92,12 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 ## Sơ đồ Thuật toán
 ![Algorithm Diagram](img/activity.jpg)
 
+📌 Project Repository
+🔗 [View full source code on GitHub](https://github.com/dohuungoc1805/classroom-management)
+
 
 
 ## 🔍 Code minh họa phần chính của project
-
-```php
 
 store() – Tạo phòng 
 
@@ -117,7 +118,7 @@ public function store(Request $request)
 
 
 
-update() – Cập nhật thông tin phòng
+## update() – Cập nhật thông tin phòng
 
 public function update(Request $request, Room $room)
 {
@@ -134,7 +135,7 @@ public function update(Request $request, Room $room)
 }
 
 
-Hàm destroy() – Xóa phòng học
+## Hàm destroy() – Xóa phòng học
 
 public function destroy(Room $room)
 {
@@ -147,7 +148,7 @@ public function destroy(Room $room)
 }
 
 
-Room.php – Model đại diện cho bảng phòng học
+## Room.php – Model đại diện cho bảng phòng học
 
 class Room extends Model
 {
@@ -180,7 +181,7 @@ class Room extends Model
     }
 }
 
-editRoom.blade.php – Giao diện cập nhật thông tin phòng
+## editRoom.blade.php – Giao diện cập nhật thông tin phòng
 
 
 <div id="editRoomModal" class="modal">
@@ -209,7 +210,4 @@ editRoom.blade.php – Giao diện cập nhật thông tin phòng
     </div>
 </div>
 
----
 
-📌 Project Repository
-🔗 [View full source code on GitHub](https://github.com/dohuungoc1805/classroom-management)
