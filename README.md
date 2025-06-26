@@ -70,9 +70,11 @@ public function store(Request $request)
 
     return redirect()->route('dashboard')->with('success', 'Room created successfully!');
 }
+```
+
 
 🔄 update() – Cập nhật thông tin phòng
-
+```php
 public function update(Request $request, Room $room)
 {
     $request->validate([
@@ -85,8 +87,11 @@ public function update(Request $request, Room $room)
 
     return redirect()->route('dashboard')->with('success', 'Cập nhật phòng học thành công!');
 }
+```
+
 
 ❌ destroy() – Xóa phòng học
+```php
 
 public function destroy(Room $room)
 {
@@ -96,8 +101,10 @@ public function destroy(Room $room)
     $room->delete();
     return redirect()->route('dashboard')->with('success', 'Xóa phòng học thành công!');
 }
+```
 
 🧱 Room.php – Model đại diện cho bảng phòng học
+```php
 
 class Room extends Model
 {
@@ -129,8 +136,11 @@ class Room extends Model
         return $this->hasMany(BookingRequest::class, 'roomId');
     }
 }
+```
+
 
 🖊️ editRoom.blade.php – Giao diện cập nhật thông tin phòng
+```php
 
 <div id="editRoomModal" class="modal">
     <div class="modal-content">
@@ -157,3 +167,4 @@ class Room extends Model
         </form>
     </div>
 </div>
+```
