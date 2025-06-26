@@ -91,3 +91,112 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 ![System Diagram](img/diagram1.jpg)
 ## Sơ đồ Thuật toán
 ![Algorithm Diagram](img/activity.jpg)
+
+## 💡 Hàm store() – Tạo phòng học mới
+
+```php
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:255', 'unique:rooms'],
+        'capacity' => ['required', 'integer', 'min:1'],
+        'location' => ['required', 'string', 'max:255'],
+        'equipment' => ['nullable', 'string'],
+    ]);
+
+    Room::create($request->all());
+
+    return redirect()->route('dashboard')->with('success', 'Thêm phòng học thành công!');
+}
+
+
+
+## Hàm update() – Cập nhật thông tin phòng
+
+public function update(Request $request, Room $room)
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:255', Rule::unique('rooms')->ignore($room->id)],
+        'capacity' => ['required', 'integer', 'min:1'],
+        'location' => ['required', 'string', 'max:255'],
+        'equipment' => ['nullable', 'string'],
+    ]);
+
+    $room->update($request->all());
+
+    return redirect()->route('dashboard')->with('success', 'Cập nhật phòng học thành công!');
+}
+
+## Hàm destroy() – Xóa phòng học
+
+public function destroy(Room $room)
+{
+    if ($room->schedules()->exists() || $room->bookingRequests()->exists()) {
+        return redirect()->route('dashboard')->with('error', 'Không thể xóa phòng vì đang được sử dụng trong lịch hoặc yêu cầu đặt phòng!');
+    }
+
+    $room->delete();
+    return redirect()->route('dashboard')->with('success', 'Xóa phòng học thành công!');
+}
+
+
+## Room.php – Model đại diện cho bảng phòng học
+
+class Room extends Model
+{
+    use HasFactory;
+
+    protected $table = 'rooms';
+
+    protected $fillable = [
+        'name',
+        'capacity',
+        'location',
+        'equipment',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'capacity' => 'integer',
+        ];
+    }
+
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class, 'roomId');
+    }
+
+    public function bookingRequests(): HasMany
+    {
+        return $this->hasMany(BookingRequest::class, 'roomId');
+    }
+}
+
+## editRoom.blade.php – Giao diện cập nhật thông tin phòng
+
+<div id="editRoomModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('editRoomModal')">&times;</span>
+        <h2>Sửa phòng học</h2>
+        <form method="POST" id="editRoomForm">
+            @csrf
+            @method('PUT')
+            <input type="hidden" id="editRoomId" name="id">
+
+            <label for="editRoomName">Tên phòng:</label>
+            <input type="text" id="editRoomName" name="name" required>
+
+            <label for="editRoomCapacity">Sức chứa:</label>
+            <input type="number" id="editRoomCapacity" name="capacity" min="1" required>
+
+            <label for="editRoomLocation">Vị trí:</label>
+            <input type="text" id="editRoomLocation" name="location" required>
+
+            <label for="editRoomEquipment">Thiết bị:</label>
+            <textarea id="editRoomEquipment" name="equipment"></textarea>
+
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+        </form>
+    </div>
+</div>
