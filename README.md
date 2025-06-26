@@ -51,6 +51,17 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 📌 Project Repository
 🔗 [View full source code on GitHub](https://github.com/dohuungoc1805/classroom-management)
 
+## 🔐 Sample Accounts
+
+### 👑 Admin
+
+- 📧 Username: `admin`  
+- 🔑 Password: `password`
+
+### 👤 User
+
+- 📧 Username: `giaovien1`  
+- 🔑 Password: `password`
 
 
 ## 🔍 Code minh họa phần chính của project
@@ -168,6 +179,4 @@ class Room extends Model
     </div>
 </div>
 ```
-## 🌐 Public Deployment
 
-🔗 [Truy cập Website](https://classroom-management.vercel.app)
