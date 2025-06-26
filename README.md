@@ -92,9 +92,14 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 ## Sơ đồ Thuật toán
 ![Algorithm Diagram](img/activity.jpg)
 
-## 💡 store() – Create a new room
+
+
+## 🔍 Code minh họa phần chính của project
 
 ```php
+
+store() – Create a new room
+
 public function store(Request $request)
 {
     $request->validate([
