@@ -151,7 +151,7 @@ class Room extends Model
 
 
 🖊️ editRoom.blade.php – Giao diện cập nhật thông tin phòng
-```php
+```html
 
 <div id="editRoomModal" class="modal">
     <div class="modal-content">
