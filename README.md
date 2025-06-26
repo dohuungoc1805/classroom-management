@@ -89,5 +89,5 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 
 ## Sơ đồ Cấu trúc
 ![System Diagram](img/diagram1.jpg)
-## sơ đồ Thuật toán
+## Sơ đồ Thuật toán
 ![Algorithm Diagram](img/activity.jpg)
