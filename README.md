@@ -44,7 +44,6 @@ ORM: Eloquent ORM Eloquent giúp thao tác với CSDL thông qua các model như
 Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX giúp thao tác mượt mà mà không cần tải lại trang.
 
 ## Sơ đồ Cấu trúc
-<<<<<<< HEAD
 # Web_quan_ly_lop_hoc
 
 ## 👤 Thông Tin Cá Nhân
@@ -90,7 +89,5 @@ Tìm kiếm & Tương tác bất đồng bộ: AJAX (JQuery) Sử dụng AJAX gi
 
 ## Sơ đồ Cấu trúc
 ![System Diagram](img/diagram1.jpg)
-=======
-
-
->>>>>>> 32107ab0a8723d330ebbc3ed0e68fb9b54f7bdd6
+## sơ đồ Thuật toán
+![Algorithm Diagram](img/activity.jpg)
