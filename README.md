@@ -65,7 +65,6 @@ public function store(Request $request)
         'location' => ['required', 'string', 'max:255'],
         'equipment' => ['nullable', 'string'],
     ]);
-
     Room::create($request->all());
 
     return redirect()->route('dashboard')->with('success', 'Room created successfully!');
@@ -84,7 +83,6 @@ public function update(Request $request, Room $room)
         'location' => ['required', 'string', 'max:255'],
         'equipment' => ['nullable', 'string'],
     ]);
-
     $room->update($request->all());
 
     return redirect()->route('dashboard')->with('success', 'Cập nhật phòng học thành công!');
@@ -98,7 +96,6 @@ public function destroy(Room $room)
     if ($room->schedules()->exists() || $room->bookingRequests()->exists()) {
         return redirect()->route('dashboard')->with('error', 'Không thể xóa phòng vì đang được sử dụng trong lịch hoặc yêu cầu đặt phòng!');
     }
-
     $room->delete();
     return redirect()->route('dashboard')->with('success', 'Xóa phòng học thành công!');
 }
